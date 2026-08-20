@@ -9,13 +9,16 @@ import {
   TbBolt,
   TbSnowflake,
   TbFlame,
-  TbThermometer,
   TbStarFilled,
   TbPhoneCall,
   TbCheck,
   TbArrowRight,
 } from 'react-icons/tb'
 import DemoTopBar from '../components/DemoTopBar'
+import acWallImg from '../assets/hvac/ac-wall.jpg'
+import acUnitsImg from '../assets/hvac/ac-units.jpg'
+import thermostatImg from '../assets/hvac/thermostat.jpg'
+import technicianImg from '../assets/hvac/technician.jpg'
 
 const BLUE = '#1D6FE0'
 const AMBER = '#F5A623'
@@ -45,6 +48,12 @@ const reviews = [
   { name: 'Dana W.', text: 'Our AC died during a heatwave and they had someone out same afternoon. Explained the repair clearly, no upsell pressure.' },
   { name: 'Carlos M.', text: 'Switched to the Comfort plan two years ago. Zero surprise breakdowns since, and the tune-up techs are always on time.' },
   { name: 'Aisha B.', text: 'They fixed a duct issue two other companies missed. Genuinely knew what they were doing.' },
+]
+
+const gallery = [
+  { image: acUnitsImg, label: 'Multi-zone outdoor installs' },
+  { image: thermostatImg, label: 'Smart thermostat setup' },
+  { image: technicianImg, label: 'On-site diagnostics' },
 ]
 
 const stats = [
@@ -160,8 +169,8 @@ export default function HvacDemo() {
             <Reveal delay={0.2} className="relative mx-auto flex h-72 w-72 items-center justify-center sm:h-80 sm:w-80">
               <div className="absolute inset-0 rounded-full opacity-20 blur-2xl" style={{ background: GRADIENT }} />
               <div className="absolute inset-4 rounded-full border-2 border-dashed" style={{ borderColor: `${BLUE}33` }} />
-              <div className="flex h-40 w-40 items-center justify-center rounded-full bg-white shadow-xl">
-                <TbThermometer className="h-16 w-16" style={{ color: BLUE }} />
+              <div className="h-56 w-56 overflow-hidden rounded-full border-4 border-white shadow-xl sm:h-64 sm:w-64">
+                <img src={acWallImg} alt="Outdoor AC unit" className="h-full w-full object-cover" />
               </div>
               <motion.div
                 animate={{ y: [0, -10, 0] }}
@@ -215,6 +224,25 @@ export default function HvacDemo() {
                   <p className="mt-2 text-sm leading-relaxed" style={{ color: MUTE }}>
                     {desc}
                   </p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+
+        {/* Gallery */}
+        <section className="px-6 pb-20 lg:px-16 lg:pb-28">
+          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-5 sm:grid-cols-3">
+            {gallery.map(({ image, label }, i) => (
+              <Reveal key={label} delay={i * 0.08}>
+                <div className="group relative h-56 overflow-hidden rounded-2xl">
+                  <img
+                    src={image}
+                    alt={label}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
+                  <span className="absolute bottom-4 left-4 right-4 text-sm font-semibold text-white">{label}</span>
                 </div>
               </Reveal>
             ))}

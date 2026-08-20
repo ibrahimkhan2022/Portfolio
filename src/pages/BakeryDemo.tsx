@@ -1,20 +1,12 @@
 import { motion } from 'framer-motion'
-import {
-  TbBread,
-  TbBaguette,
-  TbCookie,
-  TbCake,
-  TbCoffee,
-  TbWheat,
-  TbIceCream,
-  TbLeaf,
-  TbStarFilled,
-  TbQuote,
-  TbMapPin,
-  TbClock,
-  TbArrowRight,
-} from 'react-icons/tb'
+import { TbLeaf, TbStarFilled, TbQuote, TbMapPin, TbClock, TbArrowRight } from 'react-icons/tb'
 import DemoTopBar from '../components/DemoTopBar'
+import breadImg from '../assets/bakery/bread.png'
+import bagelImg from '../assets/bakery/bagel.webp'
+import croissantImg from '../assets/bakery/crossiant.png'
+import fruitImg from '../assets/bakery/fruit.webp'
+import rollsImg from '../assets/bakery/rolls.webp'
+import cupcakeImg from '../assets/bakery/cupcake.png'
 
 const TERRACOTTA = '#C1613F'
 const GOLD = '#C9A227'
@@ -27,19 +19,20 @@ const frauncesItalic = { fontFamily: '"Fraunces", serif', fontStyle: 'italic' as
 const inter = { fontFamily: '"Inter", sans-serif' }
 
 const menu = [
-  { icon: TbBread, name: 'Classic Sourdough Loaf', desc: '48-hour fermented, crackling crust.', price: '$8' },
-  { icon: TbBaguette, name: 'Butter Croissant', desc: 'Laminated fresh each morning.', price: '$4.50' },
-  { icon: TbCookie, name: 'Cinnamon Morning Bun', desc: 'Brown sugar and orange zest.', price: '$5' },
-  { icon: TbCake, name: 'Seasonal Fruit Tart', desc: 'Whatever’s ripe this week.', price: '$6.50' },
-  { icon: TbWheat, name: 'Chocolate Babka', desc: 'Dark chocolate, slow-swirled.', price: '$9' },
-  { icon: TbCoffee, name: 'House Coffee & Espresso', desc: 'Small-batch roasted, brewed fresh.', price: '$3.50' },
+  { image: breadImg, name: 'Classic Sourdough Loaf', desc: '48-hour fermented, crackling crust.', price: '$8' },
+  { image: croissantImg, name: 'Pain au Chocolat', desc: 'Laminated fresh each morning.', price: '$4.50' },
+  { image: rollsImg, name: 'Cinnamon Morning Rolls', desc: 'Brown sugar and orange zest.', price: '$5' },
+  { image: fruitImg, name: 'Seasonal Fruit Tarts', desc: 'Whatever’s ripe this week.', price: '$6.50' },
+  { image: bagelImg, name: 'Fresh Bagels', desc: 'Boiled and baked in small batches.', price: '$3.50' },
+  { image: cupcakeImg, name: 'Strawberry Shortcake Cupcakes', desc: 'Vanilla bean, real strawberries.', price: '$4.75' },
 ]
 
 const gallery = [
-  { icon: TbCake, label: 'Custom Celebration Cakes' },
-  { icon: TbIceCream, label: 'Weekend Specials' },
-  { icon: TbLeaf, label: 'Seasonal Fruit Pies' },
-  { icon: TbCoffee, label: 'Coffee & Espresso Bar' },
+  { image: breadImg, label: 'Baked before sunrise, every day', span: 'lg:row-span-2 lg:col-span-1' },
+  { image: cupcakeImg, label: 'Made for celebrations', span: '' },
+  { image: rollsImg, label: 'A weekend favorite', span: '' },
+  { image: croissantImg, label: 'Laminated by hand', span: '' },
+  { image: fruitImg, label: 'Whatever fruit is ripe that week', span: '' },
 ]
 
 const reviews = [
@@ -113,10 +106,13 @@ export default function BakeryDemo() {
           </Reveal>
 
           <Reveal delay={0.4} className="mx-auto mt-16 flex max-w-2xl flex-wrap justify-center gap-6">
-            {menu.slice(0, 5).map(({ icon: Icon, name }) => (
+            {menu.map(({ image, name }) => (
               <div key={name} className="flex flex-col items-center gap-2">
-                <div className="flex h-16 w-16 items-center justify-center rounded-full" style={{ background: `${GOLD}1f` }}>
-                  <Icon className="h-7 w-7" style={{ color: TERRACOTTA }} />
+                <div
+                  className="h-16 w-16 overflow-hidden rounded-full border-2 shadow-sm"
+                  style={{ borderColor: `${GOLD}55` }}
+                >
+                  <img src={image} alt={name} className="h-full w-full object-cover" />
                 </div>
                 <span className="max-w-[6rem] text-center text-xs" style={{ color: MUTE }}>
                   {name}
@@ -137,14 +133,18 @@ export default function BakeryDemo() {
             </h2>
           </Reveal>
 
-          <div className="mx-auto mt-14 grid max-w-5xl grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {menu.map(({ icon: Icon, name, desc, price }, i) => (
+          <div className="mx-auto mt-14 grid max-w-5xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {menu.map(({ image, name, desc, price }, i) => (
               <Reveal key={name} delay={(i % 3) * 0.08}>
-                <div className="flex h-full items-start gap-4 rounded-2xl border border-black/5 bg-white/60 p-6">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full" style={{ background: `${TERRACOTTA}1a` }}>
-                    <Icon className="h-6 w-6" style={{ color: TERRACOTTA }} />
+                <div className="group h-full overflow-hidden rounded-2xl border border-black/5 bg-white/60 shadow-sm transition-shadow hover:shadow-lg">
+                  <div className="aspect-[4/3] overflow-hidden">
+                    <img
+                      src={image}
+                      alt={name}
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
                   </div>
-                  <div className="flex-1">
+                  <div className="p-5">
                     <div className="flex items-start justify-between gap-2">
                       <h3 style={fraunces} className="text-lg">
                         {name}
@@ -190,8 +190,8 @@ export default function BakeryDemo() {
             <Reveal x={40} delay={0.1} className="relative mx-auto flex h-72 w-72 items-center justify-center">
               <div className="absolute inset-0 rounded-full border-2" style={{ borderColor: `${GOLD}55` }} />
               <div className="absolute inset-6 rounded-full opacity-30 blur-xl" style={{ background: TERRACOTTA }} />
-              <div className="flex h-44 w-44 items-center justify-center rounded-full bg-white shadow-lg">
-                <TbWheat className="h-20 w-20" style={{ color: TERRACOTTA }} />
+              <div className="h-52 w-52 overflow-hidden rounded-full border-4 border-white shadow-lg">
+                <img src={breadImg} alt="Fresh bread" className="h-full w-full object-cover" />
               </div>
             </Reveal>
           </div>
@@ -208,17 +208,17 @@ export default function BakeryDemo() {
             </h2>
           </Reveal>
 
-          <div className="mx-auto mt-14 grid max-w-5xl grid-cols-2 gap-5 lg:grid-cols-4">
-            {gallery.map(({ icon: Icon, label }, i) => (
-              <Reveal key={label} delay={i * 0.08}>
-                <div
-                  className="flex h-40 flex-col items-center justify-center gap-3 rounded-2xl text-center"
-                  style={{ background: `linear-gradient(155deg, ${TERRACOTTA}22, ${GOLD}22)` }}
-                >
-                  <Icon className="h-9 w-9" style={{ color: TERRACOTTA }} />
-                  <span className="px-3 text-sm font-medium" style={{ color: INK }}>
-                    {label}
-                  </span>
+          <div className="mx-auto mt-14 grid max-w-5xl auto-rows-[160px] grid-cols-2 gap-4 lg:grid-cols-4">
+            {gallery.map(({ image, label, span }, i) => (
+              <Reveal key={label} delay={i * 0.08} className={span}>
+                <div className="group relative h-full overflow-hidden rounded-2xl">
+                  <img
+                    src={image}
+                    alt={label}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0" />
+                  <span className="absolute bottom-3 left-3 right-3 text-sm font-medium text-white">{label}</span>
                 </div>
               </Reveal>
             ))}

@@ -17,6 +17,9 @@ import {
   TbChevronRight,
 } from 'react-icons/tb'
 import DemoTopBar from '../components/DemoTopBar'
+import heaterImg from '../assets/plumbing/plumbing.png'
+import pipesImg from '../assets/plumbing/plumbingpipes.png'
+import sinkImg from '../assets/plumbing/plumbsink.png'
 
 const NAVY = '#0B1D33'
 const NAVY_2 = '#12213A'
@@ -35,10 +38,9 @@ const services = [
 ]
 
 const jobs = [
-  { title: 'Water Heater Replacement', place: 'Millbrook, TX', icon: TbFlame },
-  { title: 'Slab Leak Repair', place: 'Oakview Estates', icon: TbAlertTriangle },
-  { title: 'Full Home Repipe', place: 'Downtown Loft District', icon: TbTool },
-  { title: 'Emergency Burst Pipe Fix', place: 'Same-day, Riverside', icon: TbBolt },
+  { title: 'Water Heater Installation', place: 'Millbrook, TX', image: heaterImg },
+  { title: 'Full Home Repipe', place: 'Downtown Loft District', image: pipesImg },
+  { title: 'Emergency Under-Sink Repair', place: 'Same-day, Riverside', image: sinkImg },
 ]
 
 const reviews = [
@@ -113,7 +115,12 @@ export default function PlumbingDemo() {
         </nav>
 
         {/* Hero */}
-        <header style={{ background: `linear-gradient(160deg, ${NAVY}, ${NAVY_2})` }} className="relative overflow-hidden px-6 pb-24 pt-16 lg:px-16 lg:pb-32 lg:pt-24">
+        <header className="relative overflow-hidden px-6 pb-24 pt-16 lg:px-16 lg:pb-32 lg:pt-24">
+          <img src={pipesImg} alt="" className="absolute inset-0 h-full w-full object-cover" />
+          <div
+            className="absolute inset-0"
+            style={{ background: `linear-gradient(160deg, ${NAVY}ee, ${NAVY_2}f2)` }}
+          />
           <TbDroplet className="pointer-events-none absolute -right-16 top-10 h-96 w-96 opacity-[0.06]" style={{ color: ORANGE }} />
           <div className="relative mx-auto max-w-3xl">
             <Reveal>
@@ -202,19 +209,19 @@ export default function PlumbingDemo() {
             </h2>
           </Reveal>
 
-          <div className="mx-auto mt-14 grid max-w-5xl grid-cols-1 gap-5 sm:grid-cols-2">
-            {jobs.map(({ icon: Icon, title, place }, i) => (
+          <div className="mx-auto mt-14 grid max-w-5xl grid-cols-1 gap-5 sm:grid-cols-3">
+            {jobs.map(({ image, title, place }, i) => (
               <Reveal key={title} delay={i * 0.08}>
-                <div
-                  className="flex items-center gap-5 rounded-2xl border border-white/10 p-6"
-                  style={{ background: `linear-gradient(135deg, ${NAVY_2}, ${NAVY})` }}
-                >
-                  <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl" style={{ background: `${ORANGE}22` }}>
-                    <Icon className="h-8 w-8" style={{ color: ORANGE }} />
-                  </div>
-                  <div>
+                <div className="group relative h-64 overflow-hidden rounded-2xl border border-white/10">
+                  <img
+                    src={image}
+                    alt={title}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 p-5">
                     <h3 className="font-bold text-white">{title}</h3>
-                    <p className="mt-1 flex items-center gap-1 text-sm text-white/60">
+                    <p className="mt-1 flex items-center gap-1 text-sm text-white/70">
                       <TbMapPin className="h-3.5 w-3.5" /> {place}
                     </p>
                   </div>

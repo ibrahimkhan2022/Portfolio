@@ -55,7 +55,7 @@ export const hobbies: Hobby[] = [
     title: "YouTuber",
     blurb: "Teaching people what they need to know in the tech world.",
     detail:
-      "I am the founder of Computing And Coding, and own the youtube channel where I post things to know in the tech world! Our main goal is to one day start teaching kids about coding and programming, and to help them get started in the tech world. ",
+      "I am the founder of Computing And Coding, and own the youtube channel where I post about AI and tech for people to watch. I've grown the channel to over 2.5k subscribers with the goal of helping people learn about tech and AI in a simple way.",
     link: {
       label: "@ComputingAndCoding",
       href: "https://www.youtube.com/@ComputingAndCoding",
@@ -153,7 +153,7 @@ export const clientSites: ClientSite[] = [
 
 export const sectionSpeech: Record<string, string[]> = {
   hero: [
-    "Hey — I'm Ibrahim's sidekick. Scroll down, I'll show you around.",
+    "Hey! I'm Ibrahim's sidekick. Scroll down, I'll show you around.",
     "Welcome in. There's a lot to see here.",
   ],
   hobbies: [
@@ -162,14 +162,14 @@ export const sectionSpeech: Record<string, string[]> = {
   ],
   projects: [
     "Here's some of what he's built. Take a look.",
-    'Every project starts as a "what if" — click around.',
+    "Dont be afraid to explore!",
   ],
   clientWork: [
-    "He builds for businesses too — real sites, real results.",
+    "He builds for businesses too!? real sites, real results.",
     "Need a site like these? Scroll to the contact section.",
   ],
   contact: [
-    "That's the tour. Let's build something — reach out below.",
-    "Email or LinkedIn — either works.",
+    "That's the tour. Let's build something, reach out below.",
+    "Email or LinkedIn, either works.",
   ],
 };
