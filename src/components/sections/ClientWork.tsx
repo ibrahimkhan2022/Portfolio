@@ -6,6 +6,10 @@ import { clientSites } from '../../data/content'
 const PREVIEW_CONTENT_WIDTH = 1600
 const PREVIEW_CONTENT_HEIGHT = 1400
 
+function withBase(path: string) {
+  return path.startsWith('/demos/') ? `${import.meta.env.BASE_URL}${path.slice(1)}` : path
+}
+
 function slug(name: string) {
   return name.toLowerCase().replace(/[^a-z0-9]+/g, '')
 }
@@ -63,7 +67,7 @@ export default function ClientWork() {
         {clientSites.map((site, i) => (
           <Reveal key={site.id} delay={i * 0.1}>
             <a
-              href={site.href ?? '#'}
+              href={withBase(site.href ?? '#')}
               target={site.href && site.href !== '#' ? '_blank' : undefined}
               rel="noreferrer"
               className="group glass-panel relative grid grid-cols-1 overflow-hidden rounded-3xl transition-all duration-300 hover:box-glow-strong md:grid-cols-[1fr_1.3fr]"
@@ -99,7 +103,7 @@ export default function ClientWork() {
 
                 <div className="relative flex-1 overflow-hidden">
                   {site.href?.startsWith('/demos/') ? (
-                    <LivePreview src={site.href} title={`${site.business} live preview`} />
+                    <LivePreview src={withBase(site.href)} title={`${site.business} live preview`} />
                   ) : (
                     <div
                       className="flex h-full items-center justify-center"

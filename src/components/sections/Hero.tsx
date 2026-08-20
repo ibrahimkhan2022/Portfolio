@@ -1,16 +1,16 @@
-import { motion } from 'framer-motion'
+import { motion, type Variants } from 'framer-motion'
 import { profile } from '../../data/content'
 
 const NAME = profile.name
 
-const container = {
+const container: Variants = {
   hidden: {},
   show: {
     transition: { staggerChildren: 0.045, delayChildren: 0.15 },
   },
 }
 
-const letter = {
+const letter: Variants = {
   hidden: { opacity: 0, y: 40, rotateX: -70 },
   show: {
     opacity: 1,

@@ -7,7 +7,7 @@ import BakeryDemo from './pages/BakeryDemo'
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/Portfolio">
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
